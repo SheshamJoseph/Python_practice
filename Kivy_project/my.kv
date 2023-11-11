@@ -1,0 +1,40 @@
+#:import utils from kivy.utils
+
+<MyGridLayout>
+
+    name:name
+    food:food
+    color:color
+
+    GridLayout:
+        cols:1
+        size:root.width, root.height
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Name : "
+            TextInput:
+                id:name
+                multiline:False
+
+            Label:
+                text: "Favorite Food : "
+            TextInput:
+                id: food
+                multiline:False
+
+            Label:
+                text: "Favorite Color : "
+            TextInput:
+                id:color
+                multiline:False
+
+        Button:
+            text: "Submit"
+            font_size: 32
+            on_press:root.press()
+            #background_normal: 'blue'
+            #background_color: (238/255,250/255,0,1)
+            background_color:utils.get_color('#ffffff')

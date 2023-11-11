@@ -17,7 +17,20 @@ window.config(background="black", padx=50, pady=50)
 comics_base = "https://imgs.xkcd.com/comics/a"
 home_link = "https://xkcd.com/"
 nav_links = []
+starting_page = None
 current_comic = None
+
+# to check the last read page number
+try:
+    with open("./bookmark.txt", "r") as file:
+        PAGE_NUMBER = file.read()
+except FileNotFoundError:
+    with open("./bookmark.txt", "w") as file:
+        file.write(str(PAGE_NUMBER))
+finally:
+    starting_page = f"{home_link}/{PAGE_NUMBER}/"
+
+
 
 # this function gets the page with the comic
 def get_page(link):
@@ -36,7 +49,6 @@ def get_page(link):
         buttons = soup.find(class_="comicNav").find_all("a")
         nav_links = [button.get("href") for button in buttons]
         return full_img_link
-
 
 # this fuctions retrieves the image
 def get_image(image_url):
@@ -89,7 +101,7 @@ def get_last_page():
         update_comic(image_link)
 
 
-image_link = get_page(home_link)
+image_link = get_page(starting_page)
 if image_link:
     current_comic = get_image(image_link)
     if current_comic:
