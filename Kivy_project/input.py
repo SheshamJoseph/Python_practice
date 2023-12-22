@@ -10,7 +10,10 @@ from kivy.lang import Builder
 # Builder.load_file("box.kv")
 # Builder.load_file("inherit.kv")
 # Builder.load_file("float_layout.kv")
-Builder.load_file("update_label.kv")
+# Builder.load_file("update_label.kv")
+# Builder.load_file("round_btn.kv")
+Builder.load_file("switch.kv")
+
 
 
 # 2nd way
@@ -84,6 +87,13 @@ class MyLayout(Widget):
         self.name.text = ""
         self.food.text = ""
         self.color.text = ""
+
+    def switch_click(self, switch_obj, switch_val):
+        # print(switch_val)
+        if switch_val:
+            self.ids.my_label.text = "Switch is on"
+        else:
+            self.ids.my_label.text = "Switch is off"
         
 
 class ThisApp(App):
