@@ -24,7 +24,7 @@ if "Changes not staged for commit" in status.stdout or "Untracked files" in stat
     if commit_result.returncode == 0:
         # if commit is successfull push to remote repo
         push_result = subprocess.run(["git", "push"], capture_output=True, text=True)
-        if push_result == 0:
+        if push_result.returncode == 0:
             print("Push completed")
         else:
             print("Push failed...")
